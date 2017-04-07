@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p3x-EZ-jG4">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Businesses View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BusinessesViewController" customModule="iYelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,171 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M0E-lx-vll">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YelpTableViewCell" rowHeight="109" id="gTR-VF-09K" customClass="YelpTableViewCell" customModule="iYelp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="109"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gTR-VF-09K" id="CP8-a2-QJB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="108.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dYJ-BJ-qVV">
+                                                    <rect key="frame" x="5" y="5" width="100.5" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="OXw-gh-rmD"/>
+                                                        <constraint firstAttribute="width" constant="100" id="ekP-ll-Tsp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIU-KH-dnA">
+                                                    <rect key="frame" x="110" y="5" width="206" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="206" id="51f-QR-UDf"/>
+                                                        <constraint firstAttribute="height" constant="20" id="BfQ-7F-hyH"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Restaurant Name">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="17" name="Helvetica-Bold"/>
+                                                                <integer key="NSLigature" value="0"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" defaultTabInterval="27.149999999999999" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                                    <tabStops>
+                                                                        <textTab alignment="left" location="27.149999618530273">
+                                                                            <options/>
+                                                                        </textTab>
+                                                                    </tabStops>
+                                                                </paragraphStyle>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBa-GE-4K6">
+                                                    <rect key="frame" x="110" y="60" width="260" height="39"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="260" id="rq8-Cc-vzx"/>
+                                                        <constraint firstAttribute="height" constant="39" id="t4i-rg-c4V"/>
+                                                    </constraints>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Cuisines">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wL2-J9-qFD">
+                                                    <rect key="frame" x="225" y="27" width="53" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Reviews">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbI-a9-pKa">
+                                                    <rect key="frame" x="326.5" y="5" width="38.5" height="16.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="100mi">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Light"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTd-3l-Ntb">
+                                                    <rect key="frame" x="110" y="40" width="57.5" height="17"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Address">
+                                                            <attributes>
+                                                                <font key="NSFont" size="14" name="Helvetica-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xIU-KH-dnA" firstAttribute="top" secondItem="CP8-a2-QJB" secondAttribute="top" constant="5" id="2hF-Z1-Qev"/>
+                                                <constraint firstAttribute="trailing" secondItem="LBa-GE-4K6" secondAttribute="trailing" constant="5" id="5Sp-2m-GHA"/>
+                                                <constraint firstItem="NbI-a9-pKa" firstAttribute="leading" secondItem="xIU-KH-dnA" secondAttribute="trailing" constant="10.5" id="8Le-Lc-mqG"/>
+                                                <constraint firstItem="dYJ-BJ-qVV" firstAttribute="leading" secondItem="CP8-a2-QJB" secondAttribute="leading" constant="5" id="B1d-qJ-LQZ"/>
+                                                <constraint firstItem="LBa-GE-4K6" firstAttribute="leading" secondItem="dYJ-BJ-qVV" secondAttribute="trailing" constant="5" id="EFS-ti-PAL"/>
+                                                <constraint firstAttribute="trailing" secondItem="LBa-GE-4K6" secondAttribute="trailing" id="Kfs-wn-UBF"/>
+                                                <constraint firstItem="FTd-3l-Ntb" firstAttribute="leading" secondItem="dYJ-BJ-qVV" secondAttribute="trailing" constant="5" id="Oqq-2d-nuL"/>
+                                                <constraint firstItem="dYJ-BJ-qVV" firstAttribute="top" secondItem="CP8-a2-QJB" secondAttribute="top" constant="5" id="SK4-G4-VfX"/>
+                                                <constraint firstItem="LBa-GE-4K6" firstAttribute="top" secondItem="FTd-3l-Ntb" secondAttribute="bottom" constant="3" id="bsc-Bi-uMy"/>
+                                                <constraint firstAttribute="trailing" secondItem="FTd-3l-Ntb" secondAttribute="trailing" constant="202.5" id="cyV-rl-xWS"/>
+                                                <constraint firstItem="NbI-a9-pKa" firstAttribute="top" secondItem="CP8-a2-QJB" secondAttribute="top" constant="5" id="hiZ-TO-Ua2"/>
+                                                <constraint firstItem="NbI-a9-pKa" firstAttribute="leading" secondItem="xIU-KH-dnA" secondAttribute="trailing" constant="10.5" id="meJ-eF-b7T"/>
+                                                <constraint firstItem="xIU-KH-dnA" firstAttribute="leading" secondItem="dYJ-BJ-qVV" secondAttribute="trailing" constant="5" id="neh-I9-HH9"/>
+                                                <constraint firstAttribute="trailing" secondItem="NbI-a9-pKa" secondAttribute="trailing" constant="5" id="pgf-z0-GFA"/>
+                                                <constraint firstItem="FTd-3l-Ntb" firstAttribute="top" secondItem="xIU-KH-dnA" secondAttribute="bottom" constant="15" id="v17-ma-h9R"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="CuisinesLabel" destination="LBa-GE-4K6" id="BfE-9e-7e6"/>
+                                            <outlet property="addressLabel" destination="FTd-3l-Ntb" id="2OZ-iR-z1y"/>
+                                            <outlet property="distanceLabel" destination="NbI-a9-pKa" id="hrT-NR-tgx"/>
+                                            <outlet property="restaurantNameLabel" destination="xIU-KH-dnA" id="aRE-IN-RMO"/>
+                                            <outlet property="reviewCountLabel" destination="wL2-J9-qFD" id="ACx-dt-O85"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="D7g-QV-woM">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" style="plain" id="5QC-Bn-kc0">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m3i-Mz-4Fk">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filter"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="filterButton" destination="5QC-Bn-kc0" id="jR7-wL-SIq"/>
+                        <outlet property="searchNavigationBar" destination="D7g-QV-woM" id="3Pd-Uh-2JC"/>
+                        <outlet property="searchResultTable" destination="M0E-lx-vll" id="lZc-yZ-h0a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1076" y="137.18140929535232"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6wp-6z-MfT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p3x-EZ-jG4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ukk-VH-U2W">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Vt2-Br-sLD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ojV-Fa-wru" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="-545.57721139430294"/>
         </scene>
     </scenes>
 </document>
