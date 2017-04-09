@@ -1,22 +1,16 @@
 //
-//  YelpTableViewCell.swift
+//  DistanceCell.swift
 //  iYelp
 //
-//  Created by Anusha Kopparam on 4/6/17.
+//  Created by Badhri Jagan Sridharan on 4/7/17.
 //  Copyright © 2017 Anusha Kopparam. All rights reserved.
 //
 
 import UIKit
 
-class YelpTableViewCell: UITableViewCell {
-    @IBOutlet weak var restaurantNameLabel: UILabel!
+class DistanceCell: UITableViewCell {
+
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var reviewCountLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var CuisinesLabel: UILabel!
-    @IBOutlet weak var restaurantImage: UIImageView!
-    @IBOutlet weak var ratingImage: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

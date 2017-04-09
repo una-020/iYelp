@@ -2,7 +2,7 @@
 //  Business.swift
 //  iYelp
 //
-//  Created by Badhri Jagan Sridharan on 4/6/17.
+//  Created by Anusha Kopparam on 4/6/17.
 //  Copyright © 2017 Anusha Kopparam. All rights reserved.
 //
 
@@ -89,7 +89,7 @@ class Business: NSObject {
         _ = YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
     }
     
-    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: @escaping ([Business]?, Error?) -> Void) -> Void {
-        _ = YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
+    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, distance: Int?, completion: @escaping ([Business]?, Error?) -> Void) -> Void {
+        _ = YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, distance: distance, completion: completion)
     }
 }
