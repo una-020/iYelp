@@ -2,7 +2,7 @@
 //  DistanceCell.swift
 //  iYelp
 //
-//  Created by Badhri Jagan Sridharan on 4/7/17.
+//  Created by Anusha Kopparam on 4/7/17.
 //  Copyright © 2017 Anusha Kopparam. All rights reserved.
 //
 
