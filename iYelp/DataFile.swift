@@ -183,7 +183,7 @@ class filter {
     var offeringDeal:Bool = false
     var distance: Int = 3200
     var sortBy: Int = 0
-    var category: [String] = ["asianfusion"]
+    var category: [String] = []
 //    init(newFilter : filter) {
 //        self.offeringDeal = newFilter.offeringDeal
 //        

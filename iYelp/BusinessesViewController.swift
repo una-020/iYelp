@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import SVPullToRefresh
+import MapKit
 
-class BusinessesViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate {
+class BusinessesViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, MKMapViewDelegate {
     @IBOutlet weak var searchNavigationBar: UINavigationItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var searchResultTable: UITableView!
@@ -35,25 +37,40 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false;
+        var toSearch: [String] = []
+        toSearch.append(searchBar.text!.lowercased())
+        print("searchBarSearchButtonClicked \(searchBar.text!)")
+        Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: toSearch, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
+            self.businesses = businesses!
+            if let businesses = businesses {
+                for business in businesses {
+                                                    print(business.name!)
+                                                    print(business.longitude!)
+                                                    print(business.latitude!)
+                }
+            }
+            self.searchResultTable.reloadData()
+        })
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filtered = self.businesses.filter({ (business) -> Bool in return (business.name?.contains(searchText))!})
-        if(filtered.count == 0){
-            searchActive = false;
-        } else {
-            searchActive = true;
-        }
-        self.searchResultTable.reloadData()
+        searchActive = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         businessBarSearchBar.placeholder = "Restaurants"
+//        businessBarSearchBar.text = "Restaurants"
         searchResultTable.delegate = self
         searchResultTable.dataSource = self
         businessBarSearchBar.delegate = self
         
+        searchResultTable.estimatedRowHeight = 110
+        searchResultTable.rowHeight  = UITableViewAutomaticDimension
+        searchResultTable.showsInfiniteScrolling = false
+
         for i in 0..<categories.count {
             if currentFilter.category.index(of: categories[i]["name"]!) != nil {
                 categoriesSelected.append(categories[i]["code"]!)
@@ -61,21 +78,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         }
         
         print(categoriesSelected)
-        
-//        Business.searchWithTerm(term: "Restaurants", completion: { (businesses: [Business]?, error: Error?) -> Void in
-//            
-//            self.businesses = businesses!
-//            if let businesses = businesses {
-//                for business in businesses {
-////                    print(business.name!)
-////                    print(business.address!)
-////                    print(business.reviewCount!)
-//                }
-//            }
-//            self.searchResultTable.reloadData()
-//
-//        }
-//        )
 
         Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
             
@@ -140,7 +142,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -157,4 +158,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
      }
      }
      */
+    
+//    addPullToRefreshWithActionHandler
+//    tableViewAddPull
 }
