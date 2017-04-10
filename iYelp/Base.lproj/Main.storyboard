@@ -337,7 +337,7 @@
                                 <rect key="frame" x="0.0" y="204" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pUn-PD-bNe" id="hRV-pH-2KJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04b-Tp-0pz">
@@ -428,7 +428,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map View" id="Key-0x-AJp">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="4Rd-FE-BJB">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4Rd-FE-BJB">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="JB0-Oe-lK6"/>
                             </connections>
@@ -626,7 +626,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="swY-K2-7hM">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="Cfm-LU-H72">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Cfm-LU-H72">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" identifier="" id="RLR-fO-nDv"/>
                             </connections>
