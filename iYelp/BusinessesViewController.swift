@@ -10,7 +10,7 @@ import UIKit
 import SVPullToRefresh
 import MapKit
 
-class BusinessesViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, MKMapViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDelegate , UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var searchNavigationBar: UINavigationItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet weak var searchResultTable: UITableView!
@@ -20,8 +20,11 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     var searchActive:Bool = false
     
     var filtered:[Business] = []
-
+    var selectedBusiness: Business!
     var categoriesSelected: [String] = []
+    
+    let locationManager = CLLocationManager()
+
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActive = true
@@ -45,9 +48,9 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
             self.businesses = businesses!
             if let businesses = businesses {
                 for business in businesses {
-                                                    print(business.name!)
-                                                    print(business.longitude!)
-                                                    print(business.latitude!)
+//                                                    print(business.name!)
+//                                                    print(business.longitude!)
+//                                                    print(business.latitude!)
                 }
             }
             self.searchResultTable.reloadData()
@@ -61,7 +64,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        businessBarSearchBar.placeholder = "Restaurants"
         businessBarSearchBar.text = "Restaurants"
         searchResultTable.delegate = self
         searchResultTable.dataSource = self
@@ -70,6 +72,29 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         searchResultTable.estimatedRowHeight = 110
         searchResultTable.rowHeight  = UITableViewAutomaticDimension
         searchResultTable.showsInfiniteScrolling = false
+        
+
+        self.locationManager.requestAlwaysAuthorization()
+        
+        // For use in foreground
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        
+        
+        searchResultTable.addPullToRefresh{Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: self.categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
+            if let businesses = businesses {
+                self.businesses = businesses
+            }
+            self.searchResultTable.reloadData()
+            })}
+
 
         for i in 0..<categories.count {
             if currentFilter.category.index(of: categories[i]["name"]!) != nil {
@@ -77,17 +102,23 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
             }
         }
         
+//        searchResultTable.addInfiniteScrolling(actionHandler: <#T##(() -> Void)!##(() -> Void)!##() -> Void#>)
+//        [tableView addInfiniteScrollingWithActionHandler:^{
+//            // append data to data source, insert new cells at the end of table view
+//            // call [tableView.infiniteScrollingView stopAnimating] when done
+//            }];
+//        
         print(categoriesSelected)
 
         Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
             
-                        self.businesses = businesses!
                         if let businesses = businesses {
-                            for business in businesses {
-//                                print(business.name!)
-//                                print(business.address!)
-//                                print(business.reviewCount!)
-                            }
+                            self.businesses = businesses
+//                            for business in businesses {
+////                                print(business.name!)
+////                                print(business.address!)
+////                                print(business.reviewCount!)
+//                            }
                         }
                         self.searchResultTable.reloadData()
                         
@@ -139,33 +170,39 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     
         return cell
     }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedBusiness = businesses[indexPath.row]
+//        print("Selected place: \(selectedBusiness.name)")
+        
+        return indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
         
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let navController = segue.destination as! UINavigationController
         if segue.identifier == "ShowMaps" {
-            let navController = segue.destination as! UINavigationController
             let mapsVC = navController.topViewController as! MapViewController
             mapsVC.businessToPlot = businesses
         }
+        
+        if segue.identifier == "ShowDetails"{
+            let detailsVC = navController.topViewController as! DetailsViewController
+//            print("Selected place: \(selectedBusiness.name)")
+            detailsVC.detailsBusiness = selectedBusiness
+        }
     }
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    
-//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-////     if segue.identifier == "showPreferencesSegue" {
-//     // we wrapped our PreferencesTableViewController inside a UINavigationController
-//     let navController = segue.destinationViewController as UINavigationController
-//     let prefsVC = navController.topViewController as PreferencesTableViewController
-//     prefsVC.currentPrefs = self.preferences
-//     }
-//     }
-//    
-    
-//    addPullToRefreshWithActionHandler
-//    tableViewAddPull
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+    }
 }

@@ -14,6 +14,7 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
     var searchApplied: Bool = false
     var newFilter: filter = filter()
 
+    var opened: Bool = false
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -72,6 +73,8 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
         }
         
         if(section == 3){
+            if opened==false{
+                return 4 }
             return categories.count
         }
         return 0
@@ -120,6 +123,10 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
         }
         
         if (indexPath.section == 3){
+            if opened==false && indexPath.row==3{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SeeMoreCell", for: indexPath)
+                return cell
+            }
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
             cell.categoryDelegate = self
             cell.categoryLabel.text = categories[indexPath.row]["name"]
@@ -148,81 +155,32 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
             sortShowing = !sortShowing
             tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: UITableViewRowAnimation.bottom)
         }
+        if(indexPath.section==3){
+            print(indexPath.row)
+            if indexPath.row<2{
+                opened = false
+            }
+            else{
+                opened = true
+                tableView.reloadData()
+            }
+        }
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
  
         let button: UIBarButtonItem = sender as! UIBarButtonItem
         
         if(button.title == "Search"){
-            print("Search button pressed")
-            print("Currrent Filters: \(currentFilter.offeringDeal) \(currentFilter.category) \(currentFilter.distance) \(currentFilter.sortBy)\n\n")
-            
             searchApplied = true
-            newFilter.distance = distancesInMeter[distanceSelected]
-            newFilter.sortBy = sortBySelected
-
-            print("New Filters: \(newFilter.offeringDeal) \(newFilter.category) \(newFilter.distance) \(newFilter.sortBy)\n\n")
-            
-            currentFilter = newFilter
-
-            print("Currrent Filters updated: \(currentFilter.offeringDeal) \(currentFilter.category) \(currentFilter.distance) \(currentFilter.sortBy)\n\n")
-            
         }
         else {
-            print("Cancel pressed")
             searchApplied = false
-            
-            print("Currrent Filters: \(currentFilter.offeringDeal) \(currentFilter.category) \(currentFilter.distance) \(currentFilter.sortBy)\n\n")
-        
-            print("New Filters: \(newFilter.offeringDeal) \(newFilter.category) \(newFilter.distance) \(newFilter.sortBy)\n\n")
-            
-            print("Currrent Filters updated: \(currentFilter.offeringDeal) \(currentFilter.category) \(currentFilter.distance) \(currentFilter.sortBy)\n\n")
-            
         }
     }
     
     func categoryCellDidToggle(cell: CategoryCell, isSelected: Bool, categoryName: String) {
-//        print("in categoryCellDidToggle() \(categoryName) \(isSelected)")
         if(isSelected == true){
             newFilter.category.append(categoryName)
             isCategorySelected[categoryName] = isSelected
