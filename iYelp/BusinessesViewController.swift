@@ -47,11 +47,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
             
             self.businesses = businesses!
             if let businesses = businesses {
-                for business in businesses {
-//                                                    print(business.name!)
-//                                                    print(business.longitude!)
-//                                                    print(business.latitude!)
-                }
             }
             self.searchResultTable.reloadData()
         })
@@ -87,13 +82,13 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         
         
         
-        searchResultTable.addPullToRefresh{Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: self.categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
-            if let businesses = businesses {
-                self.businesses = businesses
-            }
-            self.searchResultTable.reloadData()
-            })}
+//        searchResultTable.addPullToRefresh{Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: self.categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
+//            
+//            if let businesses = businesses {
+//                self.businesses = businesses
+//            }
+//            self.searchResultTable.reloadData()
+//            })}
 
 
         for i in 0..<categories.count {
@@ -102,23 +97,12 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
             }
         }
         
-//        searchResultTable.addInfiniteScrolling(actionHandler: <#T##(() -> Void)!##(() -> Void)!##() -> Void#>)
-//        [tableView addInfiniteScrollingWithActionHandler:^{
-//            // append data to data source, insert new cells at the end of table view
-//            // call [tableView.infiniteScrollingView stopAnimating] when done
-//            }];
-//        
         print(categoriesSelected)
 
         Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
             
                         if let businesses = businesses {
                             self.businesses = businesses
-//                            for business in businesses {
-////                                print(business.name!)
-////                                print(business.address!)
-////                                print(business.reviewCount!)
-//                            }
                         }
                         self.searchResultTable.reloadData()
                         
@@ -173,8 +157,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         selectedBusiness = businesses[indexPath.row]
-//        print("Selected place: \(selectedBusiness.name)")
-        
         return indexPath
     }
     
@@ -196,7 +178,6 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         
         if segue.identifier == "ShowDetails"{
             let detailsVC = navController.topViewController as! DetailsViewController
-//            print("Selected place: \(selectedBusiness.name)")
             detailsVC.detailsBusiness = selectedBusiness
         }
     }
