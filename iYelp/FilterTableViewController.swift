@@ -174,6 +174,7 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
         
         if(button.title == "Search"){
             searchApplied = true
+            currentFilter = newFilter
         }
         else {
             searchApplied = false

@@ -70,7 +70,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
             parameters["radius_filter"] = distance! as AnyObject?
         }
         
-//        print(parameters)
+        print(parameters)
         
         return self.get("search", parameters: parameters,
                         success: { (operation: AFHTTPRequestOperation, response: Any) -> Void in
