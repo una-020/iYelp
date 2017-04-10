@@ -25,9 +25,7 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("Selected place: \(detailsBusiness.name)")
-        
+
         
         let center = CLLocationCoordinate2D(
             latitude: 37.785771,
@@ -56,7 +54,6 @@ class DetailsViewController: UIViewController, MKMapViewDelegate {
             }
             
             detailsURL.text = detailsBusiness.url
-//            detailsURL.adjustsFontSizeToFitWidth = true
             detailsURL.numberOfLines = 2
             detailsCuisine.text = detailsBusiness.categories
             detailsPhone.text = detailsBusiness.phoneNumber

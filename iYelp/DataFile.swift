@@ -184,10 +184,6 @@ class filter {
     var distance: Int = 3200
     var sortBy: Int = 0
     var category: [String] = []
-//    init(newFilter : filter) {
-//        self.offeringDeal = newFilter.offeringDeal
-//        
-//    }
 }
 
 var distancesText: [String] = ["Auto", "5miles", "10miles", "20miles"]

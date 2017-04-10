@@ -148,11 +148,13 @@ class FilterTableViewController: UITableViewController, CategoryCellDelegate, Of
        if(indexPath.section==1){
             distanceSelected = indexPath.row
             distanceShowing = !distanceShowing
+            newFilter.distance = distancesInMeter[distanceSelected]
             tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: UITableViewRowAnimation.bottom)
         }
         if(indexPath.section==2){
             sortBySelected = indexPath.row
             sortShowing = !sortShowing
+            newFilter.sortBy = sortBySelected
             tableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: UITableViewRowAnimation.bottom)
         }
         if(indexPath.section==3){

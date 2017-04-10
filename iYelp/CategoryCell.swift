@@ -22,17 +22,7 @@ class CategoryCell: UITableViewCell {
     @IBAction func categoryAction(_ sender: Any) {
 
         categoryDelegate?.categoryCellDidToggle(cell: self,isSelected: categorySwitch.isOn,categoryName: categoryLabel.text!)
-        
-//        print("category \(categoryLabel.text!): \(categorySwitch.isOn)")
-//        if(categorySwitch.isOn == true){
-//                newFilter.category.append(categoryLabel.text!)
-//                isCategorySelected[categoryLabel.text!] = true
-//        }
-//        else{
-//            newFilter.category = newFilter.category.filter({$0 != categoryLabel.text})
-//            isCategorySelected[categoryLabel.text!] = false
-//        }
-    }
+}
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -45,8 +45,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         print("searchBarSearchButtonClicked \(searchBar.text!)")
         Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: toSearch, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
             
-            self.businesses = businesses!
             if let businesses = businesses {
+                self.businesses = businesses
             }
             self.searchResultTable.reloadData()
         })
@@ -82,13 +82,13 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         
         
         
-//        searchResultTable.addPullToRefresh{Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: self.categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
-//            
-//            if let businesses = businesses {
-//                self.businesses = businesses
-//            }
-//            self.searchResultTable.reloadData()
-//            })}
+        searchResultTable.addPullToRefresh{Business.searchWithTerm(term: "Restaurants", sort: YelpSortMode(rawValue: currentFilter.sortBy), categories: self.categoriesSelected, deals: currentFilter.offeringDeal, distance: currentFilter.distance, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
+            if let businesses = businesses {
+                self.businesses = businesses
+            }
+            self.searchResultTable.reloadData()
+            })}
 
 
         for i in 0..<categories.count {

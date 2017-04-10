@@ -18,9 +18,7 @@ class OfferDealCell: UITableViewCell {
     weak var offerDelegate: OfferCellDelegate?
     
     @IBAction func offerAction(_ sender: Any) {
-        offerDelegate?.offerCellToggle(cell: self, isSelected: offersSwitch.isOn)
-        //          newFilter.offeringDeal = offersSwitch.isOn
-        
+        offerDelegate?.offerCellToggle(cell: self, isSelected: offersSwitch.isOn)        
     }
     
     override func awakeFromNib() {
