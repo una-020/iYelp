@@ -61,8 +61,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        businessBarSearchBar.placeholder = "Restaurants"
-//        businessBarSearchBar.text = "Restaurants"
+//        businessBarSearchBar.placeholder = "Restaurants"
+        businessBarSearchBar.text = "Restaurants"
         searchResultTable.delegate = self
         searchResultTable.dataSource = self
         businessBarSearchBar.delegate = self
@@ -90,7 +90,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
                             }
                         }
                         self.searchResultTable.reloadData()
-            
+                        
                     })
         
        searchNavigationBar.titleView = businessBarSearchBar
@@ -143,21 +143,28 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMaps" {
+            let navController = segue.destination as! UINavigationController
+            let mapsVC = navController.topViewController as! MapViewController
+            mapsVC.businessToPlot = businesses
+        }
+    }
     
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-    /*
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     if segue.identifier == "showPreferencesSegue" {
-     // we wrapped our PreferencesTableViewController inside a UINavigationController
-     let navController = segue.destinationViewController as UINavigationController
-     let prefsVC = navController.topViewController as PreferencesTableViewController
-     prefsVC.currentPrefs = self.preferences
-     }
-     }
-     */
+    
+//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+////     if segue.identifier == "showPreferencesSegue" {
+//     // we wrapped our PreferencesTableViewController inside a UINavigationController
+//     let navController = segue.destinationViewController as UINavigationController
+//     let prefsVC = navController.topViewController as PreferencesTableViewController
+//     prefsVC.currentPrefs = self.preferences
+//     }
+//     }
+//    
     
 //    addPullToRefreshWithActionHandler
 //    tableViewAddPull
