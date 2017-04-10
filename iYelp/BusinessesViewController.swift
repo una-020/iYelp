@@ -59,7 +59,8 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        businessBarSearchBar.text = "Restaurants"
+//        businessBarSearchBar.text = "Restaurants"
+        businessBarSearchBar.placeholder = "Restaurants"
         searchResultTable.delegate = self
         searchResultTable.dataSource = self
         businessBarSearchBar.delegate = self
