@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="109" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M0E-lx-vll">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -156,7 +156,7 @@
                                             <outlet property="restaurantImage" destination="dYJ-BJ-qVV" id="LdC-sj-jOO"/>
                                             <outlet property="restaurantNameLabel" destination="xIU-KH-dnA" id="aRE-IN-RMO"/>
                                             <outlet property="reviewCountLabel" destination="wL2-J9-qFD" id="ACx-dt-O85"/>
-                                            <segue destination="gTP-08-Y2c" kind="showDetail" identifier="ShowDetails" id="tph-Gi-TaC"/>
+                                            <segue destination="gTP-08-Y2c" kind="presentation" identifier="ShowDetails" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="tph-Gi-TaC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -177,7 +177,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="map-3x.png" style="plain" id="AIx-fl-zSY">
                             <connections>
-                                <segue destination="WER-aV-trc" kind="showDetail" identifier="ShowMaps" id="3CF-9h-5bx"/>
+                                <segue destination="WER-aV-trc" kind="presentation" identifier="ShowMaps" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="3CF-9h-5bx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41" y="-546"/>
+            <point key="canvasLocation" x="40.799999999999997" y="-546.47676161919048"/>
         </scene>
         <!--Filters-->
         <scene sceneID="aRW-LR-kfG">
@@ -390,6 +390,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p3x-EZ-jG4" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ukk-VH-U2W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -412,10 +413,10 @@
                         <viewControllerLayoutGuide type="bottom" id="CxK-01-4Ho"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fJc-wW-pQT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWF-I6-QIc">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWF-I6-QIc">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
                         </subviews>
@@ -428,9 +429,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map View" id="Key-0x-AJp">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4Rd-FE-BJB">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="4Rd-FE-BJB">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="JB0-Oe-lK6"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="currentContext" modalTransitionStyle="flipHorizontal" id="JB0-Oe-lK6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -626,9 +627,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="swY-K2-7hM">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Cfm-LU-H72">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="Cfm-LU-H72">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="" id="RLR-fO-nDv"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="RLR-fO-nDv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -671,7 +672,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WER-aV-trc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="E4c-om-2h4">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="E4c-om-2h4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

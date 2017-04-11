@@ -64,6 +64,7 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
         searchResultTable.delegate = self
         searchResultTable.dataSource = self
         businessBarSearchBar.delegate = self
+//        searchNavigationBar.
         
         searchResultTable.estimatedRowHeight = 110
         searchResultTable.rowHeight  = UITableViewAutomaticDimension
@@ -109,6 +110,9 @@ class BusinessesViewController: UIViewController, UITableViewDelegate , UITableV
                         
                     })
         
+//       searchResultTable.tableHeaderView = searchNavigationBar
+//        searchNavigationBar.isTran
+        self.navigationController?.isNavigationBarHidden = false
        searchNavigationBar.titleView = businessBarSearchBar
        searchResultTable.reloadData()
         
